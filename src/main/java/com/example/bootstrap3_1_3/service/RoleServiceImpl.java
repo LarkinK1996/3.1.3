@@ -10,7 +10,6 @@ import java.util.List;
 import java.util.Set;
 
 @Service
-@Transactional
 public class RoleServiceImpl implements RoleService {
 
     private final RoleDaoImpl roleDao;
@@ -20,22 +19,26 @@ public class RoleServiceImpl implements RoleService {
         this.roleDao = roleDao;
     }
 
+    @Transactional(readOnly = true)
     @Override
     public List<Role> getAllRoles() {
         return roleDao.getAllRoles();
     }
 
 
+    @Transactional(readOnly = true)
     @Override
     public Set<Role> getRoleById(Integer[] role_id) {
         return roleDao.getRoleById(role_id);
     }
 
+    @Transactional
     @Override
     public void saveRole(Role role) {
         roleDao.saveRole(role);
     }
 
+    @Transactional(readOnly = true)
     @Override
     public Role getRole(String name) {
         return roleDao.getRole(name);
